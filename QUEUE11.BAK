@@ -1,0 +1,111 @@
+#include<iostream.h>
+#include<conio.h>
+class QUEUE11
+{
+  private:
+      int *A,front,rear,s;
+  public:
+     QUEUE11(int );
+     void INSERT(int );
+     int DELETE();
+     void DISPLAY();
+};
+ QUEUE11::QUEUE11(int par)
+ {
+    front=0;
+    rear=0;
+    s=par;
+    A=new int[s+1];
+ }
+void QUEUE11::INSERT(int ele)
+{
+  if(rear==s)
+  {
+	cout<<"QUEUE is FULL"<<endl;
+	return;
+  }
+  else
+  {
+	if(front==0)
+	{
+	    front=1;
+	    //rear=1;
+	}
+	rear=rear+1;
+	A[rear]=ele;
+  }
+}
+int QUEUE11::DELETE()
+{
+    if(front==0)
+    {
+	cout<<"Queue is empty:"<<endl;
+	return NULL;
+    }
+
+
+      int ele=A[front];
+      if(front==rear)
+       {
+	 front=rear=0;
+       }
+      else
+      {
+	front=front+1;
+      }
+      return ele;
+
+}
+void QUEUE11::DISPLAY()
+{
+	 if(front==0)
+	 {
+	  cout<<"Queue is empty."<<endl;
+	  return;
+	 }
+	 for(int i=front;i<=rear;i++)
+	 {
+		cout<<A[i]<<endl;
+	 }
+}
+void MENU()
+{
+    int opt,s,ele;
+    cout<<"\n Enter the size of queue:";
+    cin>>s;
+    QUEUE11 obj(s);
+    do{
+      cout<<"\n1. ADD Element in queue:";
+      cout<<"\n2. DEL Element in queue:";
+      cout<<"\n3. DISPLAY Elements of queue:";
+      cout<<"\n4. Exit";
+      cout<<"\n. Enter your option:";
+      cin>>opt;
+     switch(opt)
+     {
+	case 1:
+		cout<<"Enter the element: "<<endl;
+		cin>>ele;
+		obj.INSERT(ele);
+		break;
+	case 2:
+		ele=obj.DELETE();
+		cout<<"DELETED element is:"<<ele<<endl;
+		break;
+	case 3:
+		obj.DISPLAY();
+		break;
+	case 4:
+		return;
+	default:
+		cout<<"Invalid option!";
+       }
+     }while(1);
+ }
+void main()
+{
+   clrscr();
+   MENU();
+   getch();
+}
+
